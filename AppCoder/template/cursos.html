@@ -1,0 +1,28 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block contenido %}
+    <main class="container">
+        <h1 class="text-center">Listado de Cursos</h1>
+        <table class ="table">
+            <thead>
+                <th>id</th>
+                <th>nombre</th>
+                <th>camada</th>
+            </thead>
+            <tbody>
+                {% for n in cursos %}
+                <tr>
+                    <th scope="row">{{n.id}}</th>
+                    <td>{{n.nombre}}</td>
+                    <td>{{n.camada}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="btn btn-primary" href="{% url 'alta_curso' %}">Registrar curso</a>
+    </main>
+    
+
+{% endblock %}

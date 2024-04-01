@@ -1,0 +1,20 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block contenido %}
+    <h1 class="text-center">Formulario - Agregar Alumno</h1>
+    <br>
+    <form class="form-control" action="alta_alumnos" method="POST">
+        {% csrf_token %}
+        <p>Nombre</p>
+        <input type="text" name="nombre" required>
+        <p>Correo</p>
+        <input type="email" name="correo" required>
+
+        <button>Enviar</button>
+
+
+    </form>
+
+{% endblock %}
