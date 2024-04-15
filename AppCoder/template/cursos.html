@@ -17,7 +17,10 @@
                     <th scope="row">{{n.id}}</th>
                     <td>{{n.nombre}}</td>
                     <td>{{n.camada}}</td>
+                    <td><a href="{% url 'eliminar_curso' n.id %}" class="btn btn-danger btn-sm">Borrar</a></td>
+                    <td><a href="{% url 'editar_curso' n.id %}" class="btn btn-warning btn-sm">Editar</a></td>
                 </tr>
+
                 {% endfor %}
             </tbody>
         </table>

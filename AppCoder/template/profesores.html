@@ -19,6 +19,8 @@
                     <td>{{n.nombre}}</td>
                     <td>{{n.especialidad}}</td>
                     <td>{{n.correo}}</td>
+                    <td><a href="{% url 'eliminar_profesor' n.id %}" class="btn btn-danger btn-sm">Borrar</a></td>
+                    <td><a href="{% url 'editar_profesor' n.id %}" class="btn btn-warning btn-sm">Editar</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

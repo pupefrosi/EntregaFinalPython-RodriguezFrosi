@@ -117,3 +117,91 @@ def profesores_formulario(request):
             return render(request, "formulario_profesor.html")
 
     return render(request, "formulario_profesor.html")
+
+#eliminar y editar curso
+def eliminar_curso(request, id):
+    curso= Curso.objects.get(id=id)
+    curso.delete()
+    #lo anterior se puede escribir tambien como Curso.objects.get(id=id).delete() directamente sin declarar la variable
+    curso = Curso.objects.all()
+
+    return render(request, "cursos.html", {"cursos":curso})
+
+def editar(request, id):
+    curso = Curso.objects.get(id=id)
+
+    if request.method == "POST":
+        mi_formulario = Curso_formulario( request.POST )
+        if mi_formulario.is_valid(): 
+            datos = mi_formulario.cleaned_data
+            curso.nombre = datos["nombre"]
+            curso.camada = datos["camada"]
+            curso.save()
+
+        curso = Curso.objects.all()
+
+        return render(request, "cursos.html", {"cursos":curso})
+
+    else:
+        mi_formulario = Curso_formulario(initial={"nombre":curso.nombre, "camada":curso.camada})
+
+    return render(request, "editar_curso.html", {"mi_formulario":mi_formulario, "curso":curso})
+
+#eliminar y editar alumno
+def eliminar_alumno(request, id):
+    alumno= Alumno.objects.get(id=id)
+    alumno.delete()
+    #lo anterior se puede escribir tambien como Curso.objects.get(id=id).delete() directamente sin declarar la variable
+    alumno = Alumno.objects.all()
+
+    return render(request, "alumnos.html", {"alumnos":alumno})
+
+def editar_alumno(request, id):
+    alumno = Alumno.objects.get(id=id)
+
+    if request.method == "POST":
+        mi_formulario = Alumno_formulario( request.POST )
+        if mi_formulario.is_valid(): 
+            datos = mi_formulario.cleaned_data
+            alumno.nombre = datos["nombre"]
+            alumno.correo = datos["correo"]
+            alumno.save()
+
+        alumno = Alumno.objects.all()
+
+        return render(request, "alumnos.html", {"alumnos":alumno})
+
+    else:
+        mi_formulario = Alumno_formulario(initial={"nombre":alumno.nombre, "correo":alumno.correo})
+
+    return render(request, "editar_alumno.html", {"mi_formulario":mi_formulario, "alumno":alumno})
+
+#eliminar y editar profesor
+def eliminar_profesor(request, id):
+    profesor= Profesor.objects.get(id=id)
+    profesor.delete()
+    #lo anterior se puede escribir tambien como Curso.objects.get(id=id).delete() directamente sin declarar la variable
+    profesor = Profesor.objects.all()
+
+    return render(request, "profesores.html", {"profesor":profesor})
+
+def editar_profesor(request, id):
+    profesor = Profesor.objects.get(id=id)
+
+    if request.method == "POST":
+        mi_formulario = Profesor_formulario( request.POST )
+        if mi_formulario.is_valid():
+            datos = mi_formulario.cleaned_data
+            profesor.nombre = datos["nombre"]
+            profesor.especialidad = datos["especialidad"]
+            profesor.correo = datos["correo"]
+            profesor.save()
+
+        profesor = Profesor.objects.all()
+
+        return render(request, "profesores.html", {"profesores":profesor})
+
+    else:
+        mi_formulario = Profesor_formulario(initial={"nombre":profesor.nombre, "especialidad":profesor.especialidad, "correo":profesor.correo})
+
+    return render(request, "editar_profesor.html", {"mi_formulario":mi_formulario, "profesor":profesor})

@@ -9,14 +9,16 @@ from django.db import models
 class Curso(models.Model):
     nombre = models.CharField(max_length=40)
     camada = models.IntegerField()
-
+    
+    def __str__(self):
+        return f"Nombre: {self.nombre} Camada: {self.camada}"
 
 class Alumno(models.Model):
     nombre = models.CharField(max_length=100)
     correo = models.EmailField()
 
     def __str__(self):
-        return self.nombre
+        return f"Nombre: {self.nombre} Correo: {self.correo}"
     
 class Profesor(models.Model):
     nombre = models.CharField(max_length=100)
@@ -24,4 +26,4 @@ class Profesor(models.Model):
     correo = models.EmailField()
 
     def __str__(self):
-        return self.nombre
+        return f"Nombre: {self.nombre} Especialidad: {self.especialidad} Correo: {self.correo}"

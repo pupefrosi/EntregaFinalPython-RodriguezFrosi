@@ -1,0 +1,19 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block contenido %}
+    <h1 class="text-center">Formulario - Editar Curso</h1>
+    <br>
+    <form class="form-control" action="{% url 'editar_curso' curso.id %}" method="POST">
+        {% csrf_token %}
+        <p>Nombre</p>
+        {{mi_formulario.nombre}}
+        <p>Camada</p>
+        {{mi_formulario.camada}}
+
+        <button>Enviar</button>
+        
+    </form>
+    
+{% endblock %}
