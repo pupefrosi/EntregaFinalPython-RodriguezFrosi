@@ -2,17 +2,20 @@
 
 {% load static %}
 
+{% block title %} Buscar Cursos {% endblock %}
+
+{% block h1 %} Buscar Cursos {% endblock %}
+
 {% block contenido %}
 
-    <h2 class="text-center">Buscar curso</h2>
+    <main class="container-lg">
+        <h4>Introduce el nombre del curso que quieres encontrar:</h4>
+        <form action="buscar" method="GET">
+            <p>Nombre:</p>
+            <input type="text" name="nombre" id="nombre">
 
-    <h5>Introduce el nombre del curso que quieres encontrar:</h5>
-    <form action="buscar" method="GET">
-        <p>Nombre</p>
-        <input type="text" name="nombre" id="nombre">
-
-        <button>Buscar</button>
-
-    </form>
-
+            <button class="btn btn-success btn-sm">Buscar</button>
+        </form>
+    </main>
+    
 {% endblock %}

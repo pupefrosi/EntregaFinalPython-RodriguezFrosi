@@ -2,18 +2,22 @@
 
 {% load static %}
 
-{% block contenido %}
-    <h1 class="text-center">Formulario - Agregar Curso</h1>
-    <br>
-    <form class="form-control" action="alta_curso" method="POST">
-        {% csrf_token %}
-        <p>Nombre</p>
-        <input type="text" name="nombre" required>
-        <p>Camada</p>
-        <input type="number" name="camada" required>
+{% block title %} Alta Curso {% endblock %}
 
-        <button>Enviar</button>
+{% block h1 %} Formulario - Agregar Curso {% endblock %}
+
+{% block contenido %}
+
+    <main class="container-lg">
+        <form class="form-control" action="alta_curso" method="POST">
+            {% csrf_token %}
+            <p>Nombre</p>
+            <input type="text" name="nombre" required>
+            <p>Camada</p>
+            <input type="number" name="camada" required>
+
+            <button class="btn btn-outline-success btn-sm">Enviar</button>
+        </form>
+    </main>
         
-    </form>
-    
 {% endblock %}

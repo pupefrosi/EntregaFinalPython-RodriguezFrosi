@@ -2,21 +2,24 @@
 
 {% load static %}
 
+{% block title %} Editar Profesor {% endblock %}
+
+{% block h1 %} Formulario - Editar Profesor {% endblock %}
+
 {% block contenido %}
-    <h1 class="text-center">Formulario - Editar Profesor</h1>
-    <br>
-    <form class="form-control" action="{% url 'editar_profesor' profesor.id %}" method="POST">
-        {% csrf_token %}
-        <p>Nombre</p>
-        {{mi_formulario.nombre}}
-        <p>Especialidad</p>
-        {{mi_formulario.especialidad}}
-        <p>Correo</p>
-        {{mi_formulario.correo}}
 
-        <button>Enviar</button>
+    <main class="container-lg">
+        <form class="form-control" action="{% url 'editar_profesor' profesor.id %}" method="POST">
+            {% csrf_token %}
+            <p>Nombre</p>
+            {{mi_formulario.nombre}}
+            <p>Especialidad</p>
+            {{mi_formulario.especialidad}}
+            <p>Correo</p>
+            {{mi_formulario.correo}}
 
-
-    </form>
-
+            <button class="btn btn-outline-success btn-sm">Enviar</button>
+        </form>
+    </main>
+    
 {% endblock %}

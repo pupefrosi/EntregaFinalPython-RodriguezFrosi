@@ -1,0 +1,22 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block title %} Editar Perfil {% endblock %}
+
+{% block h1 %} Edita tu Perfil {% endblock %}
+
+{% block contenido %}
+    
+    <main class="container-lg">
+        <h2>{{usuario}}</h2>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <table>
+                {{mi_formulario.as_table}}
+            </table>
+            <button class="btn btn-outline-success btn-sm">Enviar</button>
+        </form>
+    </main>
+    
+{% endblock %}

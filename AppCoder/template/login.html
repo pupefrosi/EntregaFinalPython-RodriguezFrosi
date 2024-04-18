@@ -1,0 +1,20 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block title %} Ingresar {% endblock %}
+
+{% block h1 %} Ingresa a tu Perfil {% endblock %}
+
+{% block contenido %}
+
+    <main class="container-lg">
+        <h2>Ingrese sus datos</h2>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p}}
+            <button class="btn btn-outline-success btn-sm">Enviar</button>
+        </form>
+    </main>
+    
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path("inicio", views.inicio, name="home"),
@@ -16,5 +17,9 @@ urlpatterns = [
     path("eliminar_alumno/<int:id>", views.eliminar_alumno, name="eliminar_alumno"),
     path("editar_alumno/<int:id>", views.editar_alumno, name="editar_alumno"),
     path("eliminar_profesor/<int:id>", views.eliminar_profesor, name="eliminar_profesor"),
-    path("editar_profesor/<int:id>", views.editar_profesor, name="editar_profesor")
+    path("editar_profesor/<int:id>", views.editar_profesor, name="editar_profesor"),
+    path("Login", views.login_request, name="Login"),
+    path("register", views.register, name="register"),
+    path("logout", LogoutView.as_view(template_name="logout.html") , name="Logout"),
+    path("editarPerfil", views.editarPerfil, name="EditarPerfil")
 ]

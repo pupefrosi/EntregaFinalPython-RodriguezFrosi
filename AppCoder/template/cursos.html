@@ -2,14 +2,18 @@
 
 {% load static %}
 
+{% block title %} Cursos {% endblock %}
+
+{% block h1 %} Listado de Cursos {% endblock %}
+
 {% block contenido %}
-    <main class="container">
-        <h1 class="text-center">Listado de Cursos</h1>
+
+    <main class="container-lg">
         <table class ="table">
             <thead>
-                <th>id</th>
-                <th>nombre</th>
-                <th>camada</th>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Camada</th>
             </thead>
             <tbody>
                 {% for n in cursos %}
@@ -17,15 +21,13 @@
                     <th scope="row">{{n.id}}</th>
                     <td>{{n.nombre}}</td>
                     <td>{{n.camada}}</td>
-                    <td><a href="{% url 'eliminar_curso' n.id %}" class="btn btn-danger btn-sm">Borrar</a></td>
-                    <td><a href="{% url 'editar_curso' n.id %}" class="btn btn-warning btn-sm">Editar</a></td>
+                    <td><a href="{% url 'eliminar_curso' n.id %}" class="btn btn-outline-danger btn-sm">Borrar</a></td>
+                    <td><a href="{% url 'editar_curso' n.id %}" class="btn btn-outline-warning btn-sm">Editar</a></td>
                 </tr>
-
                 {% endfor %}
             </tbody>
         </table>
-        <a class="btn btn-primary" href="{% url 'alta_curso' %}">Registrar curso</a>
+        <a class="btn btn-success btn-sm" href="{% url 'alta_curso' %}">Registrar curso</a>
     </main>
     
-
 {% endblock %}

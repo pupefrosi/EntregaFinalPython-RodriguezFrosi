@@ -2,19 +2,22 @@
 
 {% load static %}
 
+{% block title %} Editar Alumno {% endblock %}
+
+{% block h1 %} Formulario - Editar Alumno {% endblock %}
+
 {% block contenido %}
-    <h1 class="text-center">Formulario - Agregar Alumno</h1>
-    <br>
-    <form class="form-control" action="{% url 'editar_alumno' alumno.id %}" method="POST">
-        {% csrf_token %}
-        <p>Nombre</p>
-        {{mi_formulario.nombre}}
-        <p>Correo</p>
-        {{mi_formulario.correo}}
 
-        <button>Enviar</button>
+    <main class="container-lg">
+        <form class="form-control" action="{% url 'editar_alumno' alumno.id %}" method="POST">
+            {% csrf_token %}
+            <p>Nombre</p>
+            {{mi_formulario.nombre}}
+            <p>Correo</p>
+            {{mi_formulario.correo}}
 
-
-    </form>
-
+            <button class="btn btn-outline-success btn-sm">Enviar</button>
+        </form>
+    </main>
+    
 {% endblock %}

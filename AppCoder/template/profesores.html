@@ -2,15 +2,19 @@
 
 {% load static %}
 
+{% block title %} Profesores {% endblock %}
+
+{% block h1 %} Listado de Profesores {% endblock %}
+
 {% block contenido %}
-    <main class="container">
-        <h1 class="text-center">listado de Profesores</h1>
+
+    <main class="container-lg">
         <table class ="table">
             <thead>
-                <th>id</th>
-                <th>nombre</th>
-                <th>especialidad</th>
-                <th>correo</th>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Especialidad</th>
+                <th>Correo</th>
             </thead>
             <tbody>
                 {% for n in profesores %}
@@ -19,14 +23,13 @@
                     <td>{{n.nombre}}</td>
                     <td>{{n.especialidad}}</td>
                     <td>{{n.correo}}</td>
-                    <td><a href="{% url 'eliminar_profesor' n.id %}" class="btn btn-danger btn-sm">Borrar</a></td>
-                    <td><a href="{% url 'editar_profesor' n.id %}" class="btn btn-warning btn-sm">Editar</a></td>
+                    <td><a href="{% url 'eliminar_profesor' n.id %}" class="btn btn-outline-danger btn-sm">Borrar</a></td>
+                    <td><a href="{% url 'editar_profesor' n.id %}" class="btn btn-outline-warning btn-sm">Editar</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <a class="btn btn-primary" href="{% url 'alta_profesor' %}">Registrar profesor</a>
+        <a class="btn btn-outline-success btn-sm" href="{% url 'alta_profesor' %}">Registrar profesor</a>
     </main>
-    
 
 {% endblock %}

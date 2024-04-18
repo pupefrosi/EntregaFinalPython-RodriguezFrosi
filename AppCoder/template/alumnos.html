@@ -2,28 +2,36 @@
 
 {% load static %}
 
+{% block title %} Alumnos {% endblock %}
+
+{% block h1 %} Listado de Alumnos {% endblock %}
+
 {% block contenido %}
-    <main class="container">
-        <h1 class="text-center">Listado de Alumnos</h1>
-        <table class ="table">
-            <thead>
-                <th>id</th>
-                <th>nombre</th>
-                <th>correo</th>
-            </thead>
-            <tbody>
-                {% for n in alumnos %}
-                <tr>
-                    <th scope="row">{{n.id}}</th>
-                    <td>{{n.nombre}}</td>
-                    <td>{{n.correo}}</td>
-                    <td><a href="{% url 'eliminar_alumno' n.id %}" class="btn btn-danger btn-sm">Borrar</a></td>
-                    <td><a href="{% url 'editar_alumno' n.id %}" class="btn btn-warning btn-sm">Editar</a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <a class="btn btn-primary" href="{% url 'alta_alumno' %}">Registrar alumno</a>
+    
+    <main class="container-lg">
+        <div>
+            <table class ="table">
+                <thead>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                </thead>
+                <tbody>
+                    {% for n in alumnos %}
+                    <tr>
+                        <th scope="row">{{n.id}}</th>
+                        <td>{{n.nombre}}</td>
+                        <td>{{n.correo}}</td>
+                        {% if request.user.is_authenticated %}
+                        <td><a href="{% url 'eliminar_alumno' n.id %}" class="btn btn-outline-danger btn-sm">Borrar</a></td>
+                        <td><a href="{% url 'editar_alumno' n.id %}" class="btn btn-outline-warning btn-sm">Editar</a></td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a class="btn btn-success btn-sm" href="{% url 'alta_alumno' %}">Registrar alumno</a>
+        </div>
     </main>
 
 {% endblock %}

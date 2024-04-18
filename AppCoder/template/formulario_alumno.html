@@ -2,19 +2,22 @@
 
 {% load static %}
 
+{% block title %} Alta Alumnos {% endblock %}
+
+{% block h1 %} Formulario - Agregar Alumno {% endblock %}
+
 {% block contenido %}
-    <h1 class="text-center">Formulario - Agregar Alumno</h1>
-    <br>
-    <form class="form-control" action="alta_alumnos" method="POST">
-        {% csrf_token %}
-        <p>Nombre</p>
-        <input type="text" name="nombre" required>
-        <p>Correo</p>
-        <input type="email" name="correo" required>
+    
+    <main class="container-lg">
+        <form class="form-control" action="alta_alumnos" method="POST">
+            {% csrf_token %}
+            <p>Nombre</p>
+            <input type="text" name="nombre" required>
+            <p>Correo</p>
+            <input type="email" name="correo" required>
 
-        <button>Enviar</button>
-
-
-    </form>
+            <button class="btn btn-outline-success btn-sm">Enviar</button>
+        </form>
+    </main>
 
 {% endblock %}

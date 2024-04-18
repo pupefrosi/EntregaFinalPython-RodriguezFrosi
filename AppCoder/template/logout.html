@@ -1,0 +1,18 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block title %} Salir {% endblock %}
+
+{% block h1 %} Te vamos a extrañar.. {% endblock %}
+
+{% block contenido %}
+
+    <main class="container-lg">
+        <div class="container-fluid">
+            <h2 class="text-center">Gracias! Vuelve pronto.</h2>
+            <a href="{% url 'home' %}" class="btn btn-outline-success">Volver</a>
+        </div>
+    </main>
+    
+{% endblock %}

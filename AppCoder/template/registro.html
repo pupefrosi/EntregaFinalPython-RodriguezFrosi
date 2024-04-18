@@ -1,0 +1,20 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block title %} Registrarse {% endblock %}
+
+{% block h1 %} Nuevo Usuario {% endblock %}
+
+{% block contenido %}
+
+    <main class="container-lg">
+        <h2>Completa el siguiente formulario:</h2>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p}}
+            <button class="btn btn-outline-success btn-sm">Registrar</button>
+        </form>
+    </main>
+
+{% endblock %}

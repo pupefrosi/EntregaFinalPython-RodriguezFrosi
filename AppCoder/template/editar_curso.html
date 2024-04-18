@@ -2,18 +2,24 @@
 
 {% load static %}
 
-{% block contenido %}
-    <h1 class="text-center">Formulario - Editar Curso</h1>
-    <br>
-    <form class="form-control" action="{% url 'editar_curso' curso.id %}" method="POST">
-        {% csrf_token %}
-        <p>Nombre</p>
-        {{mi_formulario.nombre}}
-        <p>Camada</p>
-        {{mi_formulario.camada}}
+{% block title %} Editar Curso {% endblock %}
 
-        <button>Enviar</button>
-        
-    </form>
+{% block h1 %} Formulario - Editar Curso {% endblock %}
+
+{% block contenido %}
+
+    <main class="container-lg">
+        <h1 class="text-center">Formulario - Editar Curso</h1>
+        <br>
+        <form class="form-control" action="{% url 'editar_curso' curso.id %}" method="POST">
+            {% csrf_token %}
+            <p>Nombre</p>
+            {{mi_formulario.nombre}}
+            <p>Camada</p>
+            {{mi_formulario.camada}}
+
+            <button class="btn btn-outline-success btn-sm">Enviar</button>
+        </form>
+    </main>
     
 {% endblock %}
