@@ -10,23 +10,19 @@ from django.contrib.auth.decorators import login_required
 
 
 def inicio(request):
-    return render( request , "padre.html")
-
+    avatares = Avatar.objects.filter(user=request.user.id)
+    return render(request, 'padre.html', {'url': avatares[0].imagen.url if avatares.exists() else None})
 
 def ver_cursos(request):
-    cursos = Curso.objects.all() #este Curso lo traigo del modelo planteado en models donde trabajo con DB
-    dicc = {"cursos": cursos}
-    plantilla = loader.get_template("cursos.html")
-    documento = plantilla.render(dicc)
-    return HttpResponse(documento)
-    
+    cursos = Curso.objects.all()
+    avatares = Avatar.objects.filter(user=request.user.id)
+    return render(request, 'cursos.html', {'cursos': cursos, 'url': avatares[0].imagen.url if avatares.exists() else None})
 
 def alta_curso(request, nombre):
     curso = Curso(nombre=nombre , camada=234512)
     curso.save()
     texto = f"Se guardo en la DB el curso: {curso.nombre} {curso.camada}"
     return HttpResponse(texto)
-
 
 def curso_formulario(request):
 
@@ -40,11 +36,13 @@ def curso_formulario(request):
             curso = Curso( nombre=datos["nombre"], camada=datos["camada"])
             curso.save()
             return render(request, "formulario.html")
+    avatares = Avatar.objects.filter(user=request.user.id)
+    return render(request, "formulario.html", {'url': avatares[0].imagen.url if avatares.exists() else None})
 
-    return render(request, "formulario.html")
 
 def buscar_curso(request):
-    return render(request, "buscar_curso.html")
+    avatares = Avatar.objects.filter(user=request.user.id)
+    return render(request, 'buscar_curso.html', {'url': avatares[0].imagen.url if avatares.exists() else None})
 
 def buscar(request):
     if request.GET["nombre"]:
@@ -58,11 +56,9 @@ def buscar(request):
 #Alumnos
 
 def ver_alumnos(request):
-    alumnos = Alumno.objects.all() #este Alumno lo traigo del modelo planteado en models donde trabajo con DB
-    dicc = {"alumnos": alumnos}
-    plantilla = loader.get_template("alumnos.html")
-    documento = plantilla.render(dicc)
-    return HttpResponse(documento)
+    alumnos = Alumno.objects.all()
+    avatares = Avatar.objects.filter(user=request.user.id)
+    return render(request, 'alumnos.html', {"alumnos": alumnos, 'url': avatares[0].imagen.url if avatares.exists() else None})
 
 def alta_alumnos(request, nombre, correo):
     alumno = Alumno(nombre=nombre , correo=correo)
@@ -82,8 +78,8 @@ def alumnos_formulario(request):
             alumno = Alumno( nombre=datos["nombre"], correo=datos["correo"])
             alumno.save()
             return render(request, "formulario_alumno.html")
-
-    return render(request, "formulario_alumno.html")
+    avatares = Avatar.objects.filter(user=request.user.id)
+    return render(request, "formulario_alumno.html", {'url': avatares[0].imagen.url if avatares.exists() else None})
 
 #Profesores
 def profesores(request):
@@ -91,11 +87,9 @@ def profesores(request):
 
 
 def ver_profesores(request):
-    profesores = Profesor.objects.all() #este Profesor lo traigo del modelo planteado en models donde trabajo con DB
-    dicc = {"profesores": profesores}
-    plantilla = loader.get_template("profesores.html")
-    documento = plantilla.render(dicc)
-    return HttpResponse(documento)
+    profesores = Profesor.objects.all()
+    avatares = Avatar.objects.filter(user=request.user.id)
+    return render(request, 'profesores.html', {'profesores': profesores, 'url': avatares[0].imagen.url if avatares.exists() else None})
 
 def alta_profesor(request, nombre, especialidad, correo):
     profesor = Profesor(nombre=nombre , especialidad=especialidad, correo=correo)
@@ -116,8 +110,8 @@ def profesores_formulario(request):
             profesor = Profesor( nombre=datos["nombre"], especialidad=datos["especialidad"], correo=datos["correo"])
             profesor.save()
             return render(request, "formulario_profesor.html")
-
-    return render(request, "formulario_profesor.html")
+    avatares = Avatar.objects.filter(user=request.user.id)
+    return render(request, "formulario_profesor.html", {'url': avatares[0].imagen.url if avatares.exists() else None})
 
 #eliminar y editar curso
 @login_required
