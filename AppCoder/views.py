@@ -82,10 +82,6 @@ def alumnos_formulario(request):
     return render(request, "formulario_alumno.html", {'url': avatares[0].imagen.url if avatares.exists() else None})
 
 #Profesores
-def profesores(request):
-    return render(request, "profesores.html")
-
-
 def ver_profesores(request):
     profesores = Profesor.objects.all()
     avatares = Avatar.objects.filter(user=request.user.id)
@@ -120,8 +116,8 @@ def eliminar_curso(request, id):
     curso.delete()
     #lo anterior se puede escribir tambien como Curso.objects.get(id=id).delete() directamente sin declarar la variable
     curso = Curso.objects.all()
-
-    return render(request, "cursos.html", {"cursos":curso})
+    avatares = Avatar.objects.filter(user=request.user.id)
+    return render(request, "cursos.html", {"cursos":curso, 'url': avatares[0].imagen.url if avatares.exists() else None})
 
 @login_required
 def editar(request, id):
@@ -136,13 +132,13 @@ def editar(request, id):
             curso.save()
 
         curso = Curso.objects.all()
-
+        
         return render(request, "cursos.html", {"cursos":curso})
 
     else:
         mi_formulario = Curso_formulario(initial={"nombre":curso.nombre, "camada":curso.camada})
-
-    return render(request, "editar_curso.html", {"mi_formulario":mi_formulario, "curso":curso})
+    avatares = Avatar.objects.filter(user=request.user.id)
+    return render(request, "editar_curso.html", {"mi_formulario":mi_formulario, "curso":curso, 'url': avatares[0].imagen.url if avatares.exists() else None})
 
 #eliminar y editar alumno
 @login_required
@@ -151,8 +147,8 @@ def eliminar_alumno(request, id):
     alumno.delete()
     #lo anterior se puede escribir tambien como Curso.objects.get(id=id).delete() directamente sin declarar la variable
     alumno = Alumno.objects.all()
-
-    return render(request, "alumnos.html", {"alumnos":alumno})
+    avatares = Avatar.objects.filter(user=request.user.id)
+    return render(request, "alumnos.html", {"alumnos":alumno, 'url': avatares[0].imagen.url if avatares.exists() else None})
 
 @login_required
 def editar_alumno(request, id):
@@ -172,8 +168,8 @@ def editar_alumno(request, id):
 
     else:
         mi_formulario = Alumno_formulario(initial={"nombre":alumno.nombre, "correo":alumno.correo})
-
-    return render(request, "editar_alumno.html", {"mi_formulario":mi_formulario, "alumno":alumno})
+    avatares = Avatar.objects.filter(user=request.user.id)
+    return render(request, "editar_alumno.html", {"mi_formulario":mi_formulario, "alumno":alumno, 'url': avatares[0].imagen.url if avatares.exists() else None})
 
 #eliminar y editar profesor
 @login_required
@@ -182,8 +178,8 @@ def eliminar_profesor(request, id):
     profesor.delete()
     #lo anterior se puede escribir tambien como Curso.objects.get(id=id).delete() directamente sin declarar la variable
     profesor = Profesor.objects.all()
-
-    return render(request, "profesores.html", {"profesor":profesor})
+    avatares = Avatar.objects.filter(user=request.user.id)
+    return render(request, "profesores.html", {"profesor":profesor, 'url': avatares[0].imagen.url if avatares.exists() else None})
 
 @login_required
 def editar_profesor(request, id):
@@ -204,8 +200,8 @@ def editar_profesor(request, id):
 
     else:
         mi_formulario = Profesor_formulario(initial={"nombre":profesor.nombre, "especialidad":profesor.especialidad, "correo":profesor.correo})
-
-    return render(request, "editar_profesor.html", {"mi_formulario":mi_formulario, "profesor":profesor})
+    avatares = Avatar.objects.filter(user=request.user.id)
+    return render(request, "editar_profesor.html", {"mi_formulario":mi_formulario, "profesores":profesor, 'url': avatares[0].imagen.url if avatares.exists() else None})
 
 #LOGIN
 def login_request(request):
